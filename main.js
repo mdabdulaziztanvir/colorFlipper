@@ -13,6 +13,7 @@ const colors = [
   "#C0C0C0", // Silver
   "#000000", // Black
 ];
+showingColorName.innerHTML = "Click Button";
 
 changeColorBtn.addEventListener("click", function () {
   const randomNumber = Math.floor(Math.random() * colors.length);
