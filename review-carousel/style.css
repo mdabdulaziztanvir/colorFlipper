@@ -1,0 +1,120 @@
+:root {
+  --color-main: #52b2f0;
+  --bg-body: rgba(82, 178, 240, 0.5);
+  --carouse-bg-color: rgba(229, 236, 243, 0.5);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: var(--bg-body);
+}
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+.carousel {
+  overflow-x: hidden;
+  overflow-y: auto;
+  gap: 0.75rem;
+
+  max-width: 40rem;
+  max-height: fit-content;
+  padding: 1.75rem;
+  background-color: var(--carouse-bg-color);
+  border-radius: 1rem;
+}
+.carousel--header,
+.carousel--container,
+.carousel--footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.carousel--header,
+#carouselDetails {
+  margin-bottom: 1rem;
+}
+.carousel--image {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  filter: drop-shadow(8px -3px 0 rgb(73, 214, 214));
+}
+.carousel--container-image {
+  position: relative;
+}
+.carousel--container-image::before {
+  content: '❤️';
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 3rem; */
+  padding: 1rem;
+  background-color: var(--color-main);
+  border-radius: 50%;
+  z-index: 1;
+}
+#nameId {
+  letter-spacing: 0.35rem;
+}
+#idCategory {
+  font-weight: 100;
+  color: var(--color-main);
+}
+.left-right-button-container {
+  display: flex;
+  gap: 2rem;
+}
+#leftButton,
+#rightButton {
+  background-color: var(--bg-body);
+  border: none;
+  font-size: 1.5rem;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0 0.4rem;
+  transition: 0.2s ease-in;
+}
+#leftButton:focus,
+#rightButton:focus {
+  outline: 2px solid var(--color-main);
+  background-color: var(--bg-body);
+}
+#leftButton:active,
+#rightButton:active {
+  background-color: var(--color-main);
+}
+.btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+.btn-primary {
+  background-color: var(--bg-body);
+}
+.btn:focus,
+.btn:active {
+  outline: 1px solid var(--color-main);
+}
+.btn:hover {
+  letter-spacing: 0.05rem;
+}
+/* takes 1.30 hours to complete the design and the html layout */
