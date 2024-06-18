@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./files/dictionary.png" type="image/png" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Fetch from dictionary api</title>
+  </head>
+  <body>
+    <div class="extra-para"></div>
+    <div class="input-container">
+      <div class="input-field">
+        <input type="text" id="dictionary-input" tabindex="1" required />
+        <button
+          type="submit"
+          class="input-button"
+          tabindex="2"
+          onclick="dictionaryAPI()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="output-container">
+        <h4 id="showName">Search Something</h4>
+        <h1>
+          <b> <span class="text-bg"> FIND IN </span>DICTIONARY</b>
+        </h1>
+        <h4 id="showPhoneTicName">phonetic</h4>
+      </div>
+      <hr />
+      <!-- parts of speech need append child -->
+      <!-- one parts of speech will contain 3append child -->
+
+      <div id="showPartOfSpeechDiv"></div>
+
+      <p id="showDetailsDefinition"></p>
+      <h5 id="showAntonym"></h5>
+      <h5 id="showSynonym"></h5>
+
+      <!-- phonetic audio and name  will be top and single with phontic name in the left and audio in the right -->
+
+      <h4 id="showPhoneticsName"></h4>
+
+      <h4 id="showPhoneticsAudio"></h4>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
