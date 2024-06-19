@@ -6,8 +6,16 @@
     <link rel="shortcut icon" href="./files/dictionary.png" type="image/png" />
     <link rel="stylesheet" href="./style.css" />
     <title>Fetch from dictionary api</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
+    <div class="bg-blur">
+      <img class="loading-gif" src="./files/loading.gif" alt="" />
+    </div>
+
     <div class="extra-para"></div>
     <div class="input-container">
       <div class="input-field">
@@ -25,10 +33,22 @@
     <div class="container">
       <div class="output-container">
         <h4 id="showName">Search Something</h4>
-        <h1>
+        <h1 class="title-dictionary">
           <b> <span class="text-bg"> FIND IN </span>DICTIONARY</b>
         </h1>
-        <h4 id="showPhoneTicName">phonetic</h4>
+        <h4 id="showPhoneTicName">Phonetic</h4>
+      </div>
+      <div class="phonetics-audio-container">
+        <!-- phonetic audio and name  will be top and single with phontic name in the left and audio in the right -->
+        <div></div>
+        <div class="phonetics-audio">
+          <span id="showPhoneticsName"> </span>
+          <!-- phonetics audio -->
+          <i id="playAudioIcon" class="fa-solid fa-play"></i>
+          <audio id="showPhoneticsAudio">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
       </div>
       <hr />
       <!-- parts of speech need append child -->
@@ -39,12 +59,6 @@
       <p id="showDetailsDefinition"></p>
       <h5 id="showAntonym"></h5>
       <h5 id="showSynonym"></h5>
-
-      <!-- phonetic audio and name  will be top and single with phontic name in the left and audio in the right -->
-
-      <h4 id="showPhoneticsName"></h4>
-
-      <h4 id="showPhoneticsAudio"></h4>
     </div>
     <script src="./main.js"></script>
   </body>

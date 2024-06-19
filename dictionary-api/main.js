@@ -1,3 +1,14 @@
+const loadingGif = document.querySelector(".loading-gif");
+const bgBlur = document.querySelector(".bg-blur");
+function addLoading() {
+  loadingGif.style.display = "block";
+  bgBlur.style.display = "block";
+}
+function removeLoading() {
+  loadingGif.style.display = "none";
+  bgBlur.style.display = "none";
+}
+
 async function dictionaryAPI() {
   const dictionaryInput = document
     .getElementById("dictionary-input")
@@ -5,34 +16,43 @@ async function dictionaryAPI() {
   const showName = document.getElementById("showName");
   const showPhoneTicName = document.getElementById("showPhoneTicName");
   const showPartOfSpeechDiv = document.getElementById("showPartOfSpeechDiv");
-  const showDetailsDefinition = document.getElementById(
-    "showDetailsDefinition"
-  );
-  const showAntonym = document.getElementById("showAntonym");
-  const showSynonym = document.getElementById("showSynonym");
+
   const showPhoneticsName = document.getElementById("showPhoneticsName");
   const showPhoneticsAudio = document.getElementById("showPhoneticsAudio");
-
+  const playAudioIcon = document.getElementById("playAudioIcon");
+  const mainPlayButton = playAudioIcon.className;
+  // Clear existing content before fetching new data
+  showName.innerHTML = "";
+  showPhoneTicName.innerHTML = "";
+  showPartOfSpeechDiv.innerHTML = "";
+  showPhoneticsName.textContent = "";
+  showPhoneticsAudio.src = "";
+  addLoading();
   try {
     const response = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${dictionaryInput}`
     );
+    console.log(response);
     if (!response.ok) {
       throw new Error("this is from theough error");
     }
 
     const datas = await response.json();
     for (let data of datas) {
-      // console.log(data);
+      console.log(data);
       const name = data.word;
       showName.innerHTML = `<li>${name}</li>`;
 
       // phonetic name
       const phoneTicName = data.phonetic;
-      showPhoneTicName.innerHTML = `phonetic ${phoneTicName}`;
+      if (phoneTicName !== undefined) {
+        showPhoneTicName.innerHTML = `phonetic ${phoneTicName}`;
+      } else {
+        showPhoneTicName.innerHTML = `phonetic not found`;
+      }
 
-      console.log(`1${name}`);
-      console.log(phoneTicName);
+      // console.log(`1${name}`);
+      // console.log(phoneTicName);
 
       //   array of meaning
       const meanings = data.meanings;
@@ -50,7 +70,7 @@ async function dictionaryAPI() {
 
         appendedDiv.appendChild(appendedPartsOfSpeech);
         showPartOfSpeechDiv.appendChild(appendedDiv);
-        console.log(partOfSpeech);
+        // console.log(partOfSpeech);
 
         // defination
         const definitions = meaning.definitions;
@@ -69,7 +89,7 @@ async function dictionaryAPI() {
             appendedDefination.className = "aaa";
             appendedDefination.textContent = detailsDefinition;
             appendedDiv.appendChild(appendedDefination);
-            console.log(detailsDefinition);
+            // console.log(detailsDefinition);
           }
         } else {
           console.log(`no defination for this word${dictionaryInput}`);
@@ -87,7 +107,7 @@ async function dictionaryAPI() {
             appendedAntonym.innerHTML = `<code> ${antonym}</code>`;
             newDiv.appendChild(appendedAntonym);
             appendedDiv.appendChild(newDiv);
-            console.log(antonym);
+            // console.log(antonym);
           }
         } else {
           console.log("No antonym found");
@@ -101,20 +121,16 @@ async function dictionaryAPI() {
           const newDivTwo = document.createElement("div");
           newDivTwo.className = "newDivTwo";
           for (let synonym of synonyms) {
-            const synOrderList = document.createElement("ol");
-
             const appendedSynonym = document.createElement("p");
 
             appendedSynonym.innerHTML = `<code>${synonym}</code>`;
             newDivTwo.appendChild(appendedSynonym);
             appendedDiv.appendChild(newDivTwo);
-            console.log(`synonym:${synonym}`);
+            // console.log(`synonym:${synonym}`);
           }
         } else {
           console.log("No synonym found");
         }
-
-        // append child with parts of speech
       });
 
       //   phonetics array
@@ -124,11 +140,31 @@ async function dictionaryAPI() {
         const phoneticsName = phonetic.text;
         const phoneticsAudio = phonetic.audio;
 
-        console.log(phoneticsName);
+        // console.log(phoneticsName);
         console.log(phoneticsAudio);
+        showPhoneticsName.textContent = phoneticsName;
+        showPhoneticsAudio.src = phoneticsAudio;
+
+        playAudioIcon.addEventListener("click", () => {
+          playAudioIcon.className = "fa-solid fa-volume-high";
+          showPhoneticsAudio.play();
+          showPhoneticsAudio.addEventListener(
+            "ended",
+            () => {
+              playAudioIcon.className = mainPlayButton;
+            },
+            { once: true }
+          );
+        });
       }
     }
   } catch (err) {
+    showName.textContent = dictionaryInput;
+
+    showPhoneTicName.textContent = "Not Found";
+    showPartOfSpeechDiv.textContent = `can not find ${dictionaryInput}`;
     console.error(err);
+  } finally {
+    removeLoading();
   }
 }
