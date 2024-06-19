@@ -39,7 +39,7 @@ body {
   font-family: karminaRagular, sans-serif;
   background: var(--mint-green);
   color: var(--russian-violet);
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 .extra-para {
   min-height: 30rem;
