@@ -70,7 +70,7 @@ h4 {
 .input-container {
   display: flex;
   justify-content: center;
-  border: 1px solid red;
+
   margin-top: -25rem;
 }
 .input-field {
@@ -84,6 +84,7 @@ h4 {
     rgba(255, 255, 255, 0.01)
   );
   border: none;
+  margin: 0 auto;
   width: 30%;
   min-width: 400px;
   border-radius: 1.5rem;
