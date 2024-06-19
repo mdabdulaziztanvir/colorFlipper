@@ -212,10 +212,10 @@ hr {
     max-width: 90%;
   }
   #dictionary-input {
-    width: 20%;
-    min-width: 300px;
-    -webkit-width: 20%;
-    -webkit-min-width: 300px;
+    width: 30%;
+    min-width: 400px;
+    -webkit-width: 30%;
+    -webkit-min-width: 400px;
     backdrop-filter: blur(0);
   }
   h4 {
