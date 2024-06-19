@@ -211,10 +211,11 @@ hr {
     max-width: 90%;
   }
   #dictionary-input {
-    width: 30%;
+    width: 20%;
     min-width: 300px;
+    -webkit-width: 20%;
+    -webkit-min-width: 300px;
     backdrop-filter: blur(0);
-    margin: 0 auto;
   }
   h4 {
     font-size: 1rem !important;
